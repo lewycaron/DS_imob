@@ -27,6 +27,7 @@
 
 </head>
 
+
 <body>
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="hero d-flex align-items-center section-bg">
@@ -57,171 +58,94 @@
 
       <!--Cadastro condominio-->
       <div class="row justify-content-center m-2">
-
         <div class="col-lg mx-1 d-flex reservation-form-bg justify-content-center">
           <div>
-
             <div class="section-header  mt-0">
               <p><span>Condominio</span></p>
             </div>
-
-            <form action="" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
-
+            <form id="cad" method="post" action="#" required  role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
               <div class="my-2 col-lg col-md">
-                <input type="text" name="nome_condominio" class="form-control" id="nome_condominio"
-                  placeholder="Nome do Condominio" data-rule="minlen:4"
-                  data-msg="Por favor insira pelo menos 1 caracteres">
+                 <input type="text" name="nome_condominio" maxlength="40"  class="form-control" id="nome_condominio" required
+                  placeholder="Nome do Condominio" data-rule="minlen:4">
                 <div class="validate"></div>
               </div>
-
               <div class="my-2 col-lg col-md">
                 <input type="text" class="form-control" name="cidade_codominio" id="cidade_codominio"
                   placeholder="Cidade do Condominio" data-rule="minlen:1" data-msg="Insira uma cidade Real">
                 <div class="validate"></div>
               </div>
-
               <div class="px-2 my-2 justify-content-center row">
-                <input class="text-center col-lg p-1 m-1 btn btn-info text-white" type="submit" name="cadasrar"   value="Cadastrar" />
-                <input class="text-center col-lg p-1 m-1 btn btn-info text-white" type="submit" name="consultar"  value="Consultar"
-                data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" /> <!-- Olhar Main script do javascript-->`
-
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Open modal for @getbootstrap</button>
+                <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" id="btn1" onclick='javascript: validarFormulario()'>Cadastrar</button>
+                <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" id="btn1" onclick='javascript: validarFormulario()'>Consultar</button>
               </div>
             </form>
           </div>
-
-
-          <!-- MODAL-->
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <form>
-                    <div class="mb-3">
-                      <label for="recipient-name" class="col-form-label">Recipient:</label>
-                      <input type="text" class="form-control" id="recipient-name">
-                    </div>
-                    <div class="mb-3">
-                      <label for="message-text" class="col-form-label">Message:</label>
-                      <textarea class="form-control" id="message-text"></textarea>
-                    </div>
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Send message</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-
         </div><!-- end Cadastro condominio-->
 
-
-
-
         <!-- Cadastro Morador -->
-        <div class="col-lg m-1 d-flex reservation-form-bg justify-content-center">
+        <div class="col-lg mx-1 d-flex reservation-form-bg justify-content-center">
           <div>
-            <div class="section-header">
+            <div class="section-header  mt-0">
               <p><span>Morador</span></p>
             </div>
-
-            <form action="" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
-
+            <form id="mod" method="post" action="#" required  role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
               <div class="my-2 col-lg col-md">
-                <input type="number" name="id_morador" class="form-control" id="id_morador" placeholder="id do Morador"
-                  data-rule="minlen:4" data-msg="Por favor insira pelo menos 4 caracteres">
+                <input type="number" name="id_morador" maxlength="40"  class="form-control" id="id_morador" required
+                 placeholder="ID do Morador" data-rule="minlen:4">
+               <div class="validate"></div>
+             </div>
+              <div class="my-2 col-lg col-md">
+                 <input type="text" name="nome_morador" maxlength="40"  class="form-control" id="nome_morador" required
+                  placeholder="Nome do Morador" data-rule="minlen:4">
                 <div class="validate"></div>
               </div>
-
               <div class="my-2 col-lg col-md">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Seu nome"
-                  data-rule="minlen:4" data-msg="Por favor insira pelo menos 4 caracteres">
+                <input type="text" class="form-control" name="email" id="email" required
+                  placeholder="Informe seu e-mail" data-rule="minlen:1" >
                 <div class="validate"></div>
               </div>
-
               <div class="my-2 col-lg col-md">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Seu Email"
-                  data-rule="email" data-msg="Please enter a valid email">
-                <div class="validate"></div>
-              </div>
-
-              <div class="my-2 col-lg col-md">
-                <input type="number" class="form-control" name="cep" id="cep" placeholder="CEP" data-rule="minlen:8"
-                  data-msg="Por favor insira CEP sem tracinho">
-                <div class="validate"></div>
-              </div>
-
-              <div class=" px-2 my-2  justify-content-center row">
-                <input class="text-center col-lg p-1 m-1 btn btn-info text-white" type="submit" name="cadasrar"
-                  value="Cadastrar" />
-
-                <input class="text-center col-lg p-1 m-1 btn btn-info text-white" type="submit" name="cadasrar"
-                  value="Consultar" />
-              </div>
-            </form>
-          </div>
-        </div><!-- end Cadastro Condominio-->
-
-        <!-- Cobrança -->
-        <div class="col-lg m-1 d-flex reservation-form-bg justify-content-center">
-          <div>
-
-            <div class="section-header ">
-              <p><span>Cobrança</span></p>
-            </div>
-
-            <form action="" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
-
-              <div class="my-2 col-lg col-md">
-                <input type="text" name="id_cob_morador" class="form-control" id="id_cob_morador"
-                  placeholder="Id do Morador">
-                <div class="validate"></div>
-              </div>
-
-              <div class="my-2 col-lg col-md">
-                <input type="text" class="form-control" name="id_pagamento" id="id_pagamento"
-                  placeholder="Id do condominio">
-                <div class="validate"></div>
-              </div>
-
-              <div class="my-2 col-lg col-md">
-                <input type="text" class="form-control" name="tipo_pagamento" id="id_tipoPagamento"
-                  placeholder="Tipo do pagamento">
-                <div class="validate"></div>
-              </div>
-
-              <div class="my-2 col-lg col-md">
-                <input type="number" class="form-control" name="valor_pagamento" id="valor_pagamento"
-                  placeholder="Valor do pagamento">
-                <div class="validate"></div>
-              </div>
-
-              <div class="my-2 col-lg col-md">
-                <input type="date" class="form-control" name="data_vencimento" id="data_vencimento">
-                <div class="validate"></div>
-              </div>
-
+                <input type="text" name="cep" maxlength="40"  class="form-control" id="cep" required
+                 placeholder="Informe seu CEP" data-rule="minlen:4">
+               <div class="validate"></div>
+             </div>
               <div class="px-2 my-2 justify-content-center row">
-
-                <input class="text-center col-lg p-1 m-1 btn btn-info text-white" type="submit" name="cadasrar"
-                  value="Consultar" />
-
-                <input class="text-center col-lg p-1 m-1 btn btn-info text-white" type="submit" name="cadasrar"
-                  value="Pagar" />
-
+                <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" id="btn2" onclick='javascript: validarFormulario2()'>Cadastrar</button>
+                <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" id="btn2" onclick='javascript: validarFormulario2()'>Consultar</button>
               </div>
             </form>
-
           </div>
-        </div><!-- End Cobrança -->
+        </div><!-- end Cadastro Morador-->
+
+        <!-- Cobranca -->
+        <div class="col-lg mx-1 d-flex reservation-form-bg justify-content-center">
+          <div>
+            <div class="section-header  mt-0">
+              <p><span>Morador</span></p>
+            </div>
+            <form id="cad" method="post" action="#" required  role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+              <div class="my-2 col-lg col-md">
+                 <input type="text" name="tipo_pagamento" maxlength="40"  class="form-control" id="tipo_pagamento" required
+                  placeholder="Informe o tipo de pagamento" data-rule="minlen:4">
+                <div class="validate"></div>
+              </div>
+              <div class="my-2 col-lg col-md">
+                <input type="text" name="valor_pagamento" maxlength="40"  class="form-control" id="valor_pagamento" required
+                 placeholder="Informe o Valor de pagamento" data-rule="minlen:4">
+               <div class="validate"></div>
+             </div>
+              <div class="my-2 col-lg col-md">
+                  <input type="date" name="data_pagamento" maxlength="40"  class="form-control" id="data_pagamento" required
+                  placeholder="Informe a data de pagamento" data-rule="minlen:4">
+                <div class="validate"></div>
+              </div>
+              <div class="px-2 my-2 justify-content-center row">
+                <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" id="btn3" onclick='javascript: validarFormulario3()'>Cadastrar</button>
+                <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" id="btn3" onclick='javascript: validarFormulario3()'>Consultar</button>
+              </div>
+            </form>
+          </div>
+        </div><!-- end Cobranca-->
 
       </div>
     </div>
@@ -233,8 +157,6 @@
 
     </div>
   </section>
-
-
 
   <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
@@ -251,6 +173,120 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+    //verifica campo com tamanho muito pequeno
+    function muitoCurto(campo, nome, tamanho) {
+      if (campo.value.length >= tamanho) return false;
+      alert("O conteúdo do campo '" + nome
+            + "' deve ter pelo menos " + tamanho + " caracteres."
+            + " Por favor, preencha-o corretamente.");
+      return true;
+    }
+
+    //verifica campo com tamanho muito grande
+    function tamanhoErrado(campo, nome, tamanho) {
+      if (campo.value.length <= 50) return false;
+      alert("O conteúdo do campo '" + nome
+            + "' possui mais de " + tamanho + " caracteres. "
+            + "Por favor, preencha-o corretamente.");
+      return true;
+    }
+
+    //verifica campo para ser apenas numerico
+    function naoNumerico(campo, nome) {
+      if (!isNaN(campo.value)) return false;
+      alert("Digite somente números no campo '" + nome + "', por favor.");
+      return true;
+    }
+
+    //verifica campo para nao ser numerico
+    function Numerico(campo, nome) {
+      if (isNaN(campo.value)) return false;
+      alert("Digite somente números no campo '" + nome + "', por favor.");
+      return true;
+    }
+
+    //verifica campo com caracter 'errado'
+    function validarstring($string) {
+      return !!preg_match('|^[\pL\s]+$|u', $string);
+      }
+
+
+    function validarFormulario() {
+      var cad = document.getElementById('cad');
+      if (muitoCurto(cad.nome_condominio, 'Nome Condominio', 2)) return;
+      cad.submit();
+      if (muitoCurto(cad.cidade_codominio, 'Cidade', 2)) return;
+      cad.submit();
+
+
+      if (tamanhoErrado(cad.nome_condominio, 'Nome', 50)) return;
+      cad.submit();
+      if (tamanhoErrado(cad.cidade_codominio, 'Cidade', 50)) return;
+      cad.submit();
+
+
+      if (Numerico(cad.nome_condominio, 'Nome', 50)) return;
+      cad.submit();
+      if (Numerico(cad.cidade_codominio, 'Cidade', 50)) return;
+      cad.submit();
+
+
+      if (validarstring(cad.nome_condominio, 'Nome', 50)) return;
+      cad.submit();
+      if (validarstring(cad.cidade_codominio, 'Cidade', 50)) return;
+      cad.submit();
+
+    }
+
+    function validarFormulario2() {
+      var id_morador = document.getElementById("id_morador").value;
+      if(id_morador == ''){
+        alert("Campo ID Morador é Obrigatorio")
+      }
+
+      var nome = document.getElementById("nome_morador").value;
+      var padrao = /[^a-zà-ú]/gi;
+      var valida_nome = nome.match(padrao);
+
+      if( valida_nome || !nome ){
+        alert("Nome possui caracteres inválidos ou é vazio")
+      }
+      
+      //valida cep
+      var cep = document.getElementById("cep").value;
+      if(cep == ''){
+            alert("Campo CEP é Obrigatorio")
+          }
+      
+      // nao consegui fazer funcionar ----------------------------------------------------
+      /*
+      var padrao =/[0-9]/;
+      var valida_cep = cep.match(padrao);
+      if( valida_cep || !cep ){
+        if(cep.value.length  >= 9 ){
+          alert("CEP maior que 8 caracteres")
+        }
+        alert("CEP possui caracteres inválidos ou é vazio")
+      }*/
+
+
+    }
+
+    function validarFormulario3() {
+      var tipo_pagamento = document.getElementById("tipo_pagamento").value;
+      if(tipo_pagamento == ''){
+        alert("Campo tipo pagamento é Obrigatorio")
+      }
+
+      var valor_pagamento = document.getElementById("valor_pagamento").value;
+      if(valor_pagamento == ''){
+        alert("Campo valor pagamento é Obrigatorio")
+      } 
+    }
+
+    //https://pt.stackoverflow.com/questions/300205/validar-nome-e-sobrenome-no-javascript
+  </script>
 
 </body>
 
