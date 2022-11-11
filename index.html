@@ -286,6 +286,15 @@
       } 
     }
 
+    var url = "http://localhost:5023/condominio/get/1"
+
+    fetch(url).then(res => {
+        res.json().then(data => {
+          localStorage.setItem('data', data)
+          console.log(data.data.nome_condominio)
+        })
+    })
+
     //https://pt.stackoverflow.com/questions/300205/validar-nome-e-sobrenome-no-javascript
   </script>
 
