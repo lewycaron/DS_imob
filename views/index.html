@@ -88,55 +88,59 @@
 
         <!-- Cadastro Morador -->
         <div class="col-lg mx-1 d-flex reservation-form-bg justify-content-center">
+
           <div>
             <div class="section-header  mt-0">
               <p><span>Morador</span></p>
             </div>
 
             <form id="mod" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100" required>
+              <div class=" PrincipalM">
+                <div class="my-2 col-lg col-md">
+                  <input type="text" class="form-control" name="morador_nome" id="morador_nome" placeholder="Nome"
+                    required>
+                </div>
 
-              <div class="my-2 col-lg col-md">
-                <input type="text" class="form-control" name="morador_nome" id="morador_nome" placeholder="Nome"
-                  required>
+                <div class="my-2 col-lg col-md">
+                  <input type="text" class="form-control" name="email" id="morador_email" placeholder="e-mail" required>
+                </div>
+
+                <div class="my-2 col-lg col-md">
+                  <input type="text" class="form-control" id="morador_cep" placeholder="CEP" onblur="getLogradouro()">
+                </div>
+
+                <div class="my-2 col-lg col-md">
+                  <input id="morador_logradouro" class="form-control" placeholder="Logradouro" type="text" />
+                </div>
+
+                <div class="my-2 col-lg col-md">
+                  <input id="morador_numero" class="form-control" placeholder="Número" type="number" />
+                </div>
+                
+                <div class="my-2 col-lg col-md">
+                  <input id="morador_complemento" class="form-control" placeholder="Complemento" Type="text" />
+                </div>
               </div>
 
-              <div class="my-2 col-lg col-md">
-                <input type="text" class="form-control" name="email" id="morador_email" placeholder="e-mail" required>
+              <!-- Lista Morador-->
+              <div class="listaM">
+                <p>Esta div não será exibida</p>
+                <form id="mod" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100" required>
+                  <div id="lista-morador"> </div>
+                  <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" id='btn-voltar'>Voltar</button>
+                </form>
               </div>
-
-              <div class="my-2 col-lg col-md">
-                <input type="text" class="form-control" id="morador_cep" placeholder="CEP" onblur="getLogradouro()">
-              </div>
-
-              <div class="my-2 col-lg col-md">
-                <input id="morador_logradouro" class="form-control" placeholder="Logradouro" type="text" />
-              </div>
-
-              <div class="my-2 col-lg col-md">
-                <input id="morador_numero" class="form-control" placeholder="Número" type="number" />
-              </div>
-              
-              <div class="my-2 col-lg col-md">
-                <input id="morador_complemento" class="form-control" placeholder="Complemento" Type="text" />
-              </div>
-
+              <!-- end Lista Morador-->
 
               <div class="px-2 my-2 justify-content-center row">
-
-                <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button"  onclick="cadastrarMorador()">Cadastrar</button>
-                <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" onclick="listarMorardor()">Consultar</button>
-
+                <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" onclick="cadastrarMorador()">Cadastrar</button>
+                <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" id='btn-div'  onclick="listarMorardor()">Consultar</button>
               </div>
 
             </form>
-
           </div>
-        </div><!-- end Cadastro Morador-->
 
-        <!-- Lista Morador-->
-        <div class="col-lg mx-1 d-flex reservation-form-bg justify-content-center">
-          <div id="lista-morador"> </div>
-        </div><!-- end Lista Morador-->
+        </div><!-- end Cadastro Morador-->
 
         <!-- Cobranca -->
         <div class="col-lg mx-1 d-flex reservation-form-bg justify-content-center">

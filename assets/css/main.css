@@ -595,5 +595,9 @@ section {
     transform: rotate(360deg);
   }
 }
-
-
+.listaM{
+  display: none;
+}
+.PrincipalM{
+  display: block;
+}

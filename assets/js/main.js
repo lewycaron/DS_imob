@@ -349,6 +349,32 @@ function listarMorardor()
 		}
 	})
 }
+//consultar morador 
+function goBack() {
+    window.history.back()
+}
+
+var btn = document.getElementById('btn-div');
+var listaM = document.querySelector('.listaM');
+var PrincipalM = document.querySelector('.PrincipalM');
+btn.addEventListener('click', function() {
+    
+  if(listaM.style.display === 'none') {
+	PrincipalM.style.display = 'block';
+  } else {
+	listaM.style.display = 'block';
+	PrincipalM.style.display = 'none';
+  }
+
+});
+
+var btnV = document.getElementById('btn-voltar');
+btnV.addEventListener('click', function() {
+
+    listaM.style.display = 'none';
+	PrincipalM.style.display = 'block'
+
+  });
 
 
 
