@@ -118,12 +118,12 @@ document.addEventListener('DOMContentLoaded', () => {
   function validarFormulario3() {
     var tipo_pagamento = document.getElementById("tipo_pagamento").value;
     if (tipo_pagamento == '') {
-      alert("Campo tipo pagamento é Obrigatorio")
+      alert("Campo tipo pagamento Obrigatorio")
     }
 
     var valor_pagamento = document.getElementById("valor_pagamento").value;
     if (valor_pagamento == '') {
-      alert("Campo valor pagamento é Obrigatorio")
+      alert("Campo valor pagamento Obrigatorio")
     }
   }
 
@@ -250,7 +250,7 @@ function cadastrarMorador()
 	.catch((error) =>
 	{
 		console.log(error)
-		alert('Não foi possível efetuar o cadastro! :(')
+		alert('Nao foi possivel efetuar o cadastro! :(')
 	})
 	
 }
@@ -350,33 +350,42 @@ function listarMorardor()
 	})
 }
 //consultar morador 
-function goBack() {
-    window.history.back()
-}
-
-var btn = document.getElementById('btn-div');
+var btn = document.getElementById('btn-morador');
 var listaM = document.querySelector('.listaM');
 var PrincipalM = document.querySelector('.PrincipalM');
-btn.addEventListener('click', function() {
-    
-  if(listaM.style.display === 'none') {
-	PrincipalM.style.display = 'block';
-  } else {
-	listaM.style.display = 'block';
-	PrincipalM.style.display = 'none';
-  }
+btn.addEventListener('click', function () {
+  
+  PrincipalM.style.display = 'none';
+  listaM.style.display = 'block';
 
 });
 
-var btnV = document.getElementById('btn-voltar');
-btnV.addEventListener('click', function() {
+var btnVM = document.getElementById('btn-voltarM');
+btnVM.addEventListener('click', function () {
 
-    listaM.style.display = 'none';
-	PrincipalM.style.display = 'block'
+  listaM.style.display = 'none';
+  PrincipalM.style.display = 'block';
 
-  });
+});
 
+//consultar condominio 
+var btnC = document.getElementById('btn-condominio');
+var listaC = document.querySelector('.listaC');
+var PrincipalC = document.querySelector('.PrincipalC');
+btnC.addEventListener('click', function() {
 
+  PrincipalC.style.display = 'none';
+  listaC.style.display = 'block';
 
+});
+
+var btnVC = document.getElementById('btn-voltarC');
+btnVC.addEventListener('click', function() {
+
+  listaC.style.display = 'none';
+  PrincipalC.style.display = 'block';
+  
+});
+  
 
 /** FIM CRUD MORADOR*/
