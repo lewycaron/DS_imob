@@ -395,34 +395,34 @@ function listarCondominio()
 		{
 			//cria div para as informacoes de um condominio
 			let divcondominio = document.createElement('div')
-			divcondominio.setAttribute('class', 'php-email-form')
+			divcondominio.setAttribute('class', 'php-condominio-form')
 			
 			//pega o nome do condominio
-			let divNome = document.createElement('input')
-			divNome.placeholder = 'Nome Completo'
-			divNome.value = condominio.nome
-      divNome.setAttribute('class', 'form-control')
-			divcondominio.appendChild(divNome)
+			let divNomeC = document.createElement('input')
+			divNomeC.placeholder = 'Nome Condominio'
+			divNomeC.value = condominio.nome_condominio
+      divNomeC.setAttribute('class', 'form-control')
+			divcondominio.appendChild(divNomeC)
 			
       //pega o cidade do condominio
-			let divCEP = document.createElement('input')
-			divCEP.placeholder = 'CEP'
-			divCEP.value = condominio.Cep
-      divCEP.setAttribute('class', 'form-control')
-			condominio.appendChild(divCEP)
+			let divCidade = document.createElement('input')
+			divCidade.placeholder = 'Cidade'
+			divCidade.value = condominio.cidade_condominio
+      divCidade.setAttribute('class', 'form-control')
+			divcondominio.appendChild(divCidade)
 			
 
 			//cria o botao para remover o condominio
 			let btnRemover = document.createElement('button')
 			btnRemover.innerHTML = 'Remover'
 			btnRemover.onclick = u => remover(condominio.id)
-      divNome.setAttribute('class', 'btn' , )
+      divNomeC.setAttribute('class', 'btn' , )
 			btnRemover.style.marginRight = '5px'
 			
 			//cria o botao para atualizar o morador
 			let btnAtualizar = document.createElement('button')
 			btnAtualizar.innerHTML = 'Atualizar'
-			btnAtualizar.onclick = u => atualizar(condominio.id, divNome,  divCidade,)
+			btnAtualizar.onclick = u => atualizar(condominio.id, divNomeC,  divCidade,)
 			btnAtualizar.style.marginLeft = '5px'
 			
 			//cria a div com os dois botoes
