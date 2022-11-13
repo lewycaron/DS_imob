@@ -351,31 +351,33 @@ function listarMorardor()
 		}
 	})
 }
-
 //consultar morador 
-function goBack() {
-    window.history.back()
-}
-
-var btn = document.getElementById('btn-div');
+var btn = document.getElementById('btn-morador');
 var listaM = document.querySelector('.listaM');
 var PrincipalM = document.querySelector('.PrincipalM');
-btn.addEventListener('click', function() {
-    
-  if(listaM.style.display === 'none') {
-	PrincipalM.style.display = 'block';
-  } else {
-	listaM.style.display = 'block';
-	PrincipalM.style.display = 'none';
-  }
+btn.addEventListener('click', function () {
+  
+  PrincipalM.style.display = 'none';
+  listaM.style.display = 'block';
 
 });
 
 var btnVM = document.getElementById('btn-voltarM');
 btnVM.addEventListener('click', function () {
 
-    listaM.style.display = 'none';
-	PrincipalM.style.display = 'block'
+  listaM.style.display = 'none';
+  PrincipalM.style.display = 'block';
+
+});
+
+//consultar condominio 
+var btnC = document.getElementById('btn-condominio');
+var listaC = document.querySelector('.listaC');
+var PrincipalC = document.querySelector('.PrincipalC');
+btnC.addEventListener('click', function() {
+
+  PrincipalC.style.display = 'none';
+  listaC.style.display = 'block';
 
 });
 
