@@ -255,7 +255,7 @@ function cadastrarMorador()
 	
 }
 
-
+///lista-morador
 
 function listarMorardor()
 {
@@ -369,6 +369,74 @@ btnVM.addEventListener('click', function () {
   PrincipalM.style.display = 'block';
 
 });
+/** FIM CRUD MORADOR*/
+
+//lista-condominio
+
+function listarCondominio()
+{
+	//da um GET no endpoint "condominio"
+	fetch(url + 'condominio/getAll')
+	.then(response => response.json())
+	.then((condominios) =>
+	{
+		//pega div que vai conter a lista de condominio
+		let listarCondominio = document.getElementById('lista-condominio')
+		
+		/*limpa div
+		while(listarCondominio.firstChild)
+		{
+			listarCondominio.removeChild(listarCondominio.firstChild)
+		}
+    */
+		
+		//preenche div com condominio recebidos do GET
+		for(let condominio of condominios)
+		{
+			//cria div para as informacoes de um condominio
+			let divcondominio = document.createElement('div')
+			divcondominio.setAttribute('class', 'php-email-form')
+			
+			//pega o nome do condominio
+			let divNome = document.createElement('input')
+			divNome.placeholder = 'Nome Completo'
+			divNome.value = condominio.nome
+      divNome.setAttribute('class', 'form-control')
+			divcondominio.appendChild(divNome)
+			
+      //pega o cidade do condominio
+			let divCEP = document.createElement('input')
+			divCEP.placeholder = 'CEP'
+			divCEP.value = condominio.Cep
+      divCEP.setAttribute('class', 'form-control')
+			condominio.appendChild(divCEP)
+			
+
+			//cria o botao para remover o condominio
+			let btnRemover = document.createElement('button')
+			btnRemover.innerHTML = 'Remover'
+			btnRemover.onclick = u => remover(condominio.id)
+      divNome.setAttribute('class', 'btn' , )
+			btnRemover.style.marginRight = '5px'
+			
+			//cria o botao para atualizar o morador
+			let btnAtualizar = document.createElement('button')
+			btnAtualizar.innerHTML = 'Atualizar'
+			btnAtualizar.onclick = u => atualizar(condominio.id, divNome,  divCidade,)
+			btnAtualizar.style.marginLeft = '5px'
+			
+			//cria a div com os dois botoes
+			let divBotoes = document.createElement('div')
+			divBotoes.style.display = 'flex'
+			divBotoes.appendChild(btnRemover)
+			divBotoes.appendChild(btnAtualizar)
+			divcondominio.appendChild(divBotoes)
+			
+			//insere a div do morador na div com a lista de moradores
+			listarCondominio.appendChild(divcondominio)
+		}
+	})
+}
 
 //consultar condominio 
 var btnC = document.getElementById('btn-condominio');
@@ -388,6 +456,34 @@ btnVC.addEventListener('click', function() {
   PrincipalC.style.display = 'block';
   
 });
-  
+/** FIM CRUD CONDOMINIO*/
 
-/** FIM CRUD MORADOR*/
+function listarCobranca()
+{
+	//da um GET no endpoint "cobranca"
+  fetch(url + 'cobranca/getAll')
+    .then(response => response.json())
+    .then((cobrancas) => { 
+      //pega div que vai conter a lista de cobranca
+		let listarCobranca = document.getElementById('lista-cobranca')
+		
+		
+		//preenche div com cobranca recebidos do GET
+      for (let cobranca of cobrancas) {
+        //cria div para as informacoes de um condominio
+        let divcobranca = document.createElement('div')
+        divcobranca.setAttribute('class', 'php-email-form')
+			
+        //pega o nome do cobranca
+        let divNome = document.createElement('input')
+        divNome.placeholder = 'Nome Completo'
+        divNome.value = cobranca.nome
+        divNome.setAttribute('class', 'form-control')
+        divcobranca.appendChild(divNome)
+
+        //insere a div do morador na div com a lista de moradores
+        listarCobranca.appendChild(divcobranca)
+      }
+  })
+}
+/** FIM CRUD COBRANCA*/
