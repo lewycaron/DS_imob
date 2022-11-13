@@ -94,50 +94,70 @@
               <p><span>Morador</span></p>
             </div>
 
-            <form id="mod" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100" required>
-              <div class=" PrincipalM">
-                <div class="my-2 col-lg col-md">
-                  <input type="text" class="form-control" name="morador_nome" id="morador_nome" placeholder="Nome"
-                    required>
+            <!-- Div cadastrar morador -->
+            <div id="morador_lista_div1" class="morador_lista_div1">
+
+              <form id="mod" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100" required>
+                <div class=" PrincipalM">
+                  <div class="my-2 col-lg col-md">
+                    <input type="text" class="form-control" name="morador_nome" id="morador_nome" placeholder="Nome"
+                      required>
+                  </div>
+
+                  <div class="my-2 col-lg col-md">
+                    <input type="text" class="form-control" name="email" id="morador_email" placeholder="e-mail"
+                      required>
+                  </div>
+
+                  <div class="my-2 col-lg col-md">
+                    <input type="text" class="form-control" id="morador_cep" placeholder="CEP" onblur="getLogradouro()">
+                  </div>
+
+                  <div class="my-2 col-lg col-md">
+                    <input id="morador_logradouro" class="form-control" placeholder="Logradouro" type="text" />
+                  </div>
+
+                  <div class="my-2 col-lg col-md">
+                    <input id="morador_numero" class="form-control" placeholder="Número" type="number" />
+                  </div>
+
+                  <div class="my-2 col-lg col-md">
+                    <input id="morador_complemento" class="form-control" placeholder="Complemento" Type="text" />
+                  </div>
                 </div>
 
-                <div class="my-2 col-lg col-md">
-                  <input type="text" class="form-control" name="email" id="morador_email" placeholder="e-mail" required>
+                <div class="px-2 my-2 justify-content-center row">
+                  <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button"
+                    onclick="cadastrarMorador()">Cadastrar</button>
+                  <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" id='btn-div'
+                    onclick="listarMorardor()">Listar</button>
                 </div>
 
-                <div class="my-2 col-lg col-md">
-                  <input type="text" class="form-control" id="morador_cep" placeholder="CEP" onblur="getLogradouro()">
-                </div>
+              </form>
+            </div> <!-- FIM Div cadastrar morador -->
 
-                <div class="my-2 col-lg col-md">
-                  <input id="morador_logradouro" class="form-control" placeholder="Logradouro" type="text" />
-                </div>
 
-                <div class="my-2 col-lg col-md">
-                  <input id="morador_numero" class="form-control" placeholder="Número" type="number" />
-                </div>
-                
-                <div class="my-2 col-lg col-md">
-                  <input id="morador_complemento" class="form-control" placeholder="Complemento" Type="text" />
-                </div>
-              </div>
-
-              <!-- Lista Morador-->
+            <!-- DIV Lista Morador-->
+            <div id="morador_lista_div2" class="morador_lista_div2">
+              
+              <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button"
+                id='btn-voltar'>Voltar</button>
               <div class="listaM">
+
+
                 <p>Esta div não será exibida</p>
+
+                <div id="lista-morador">
+                  <!-- lista de moradores aparece aqui-->
+                </div>
+
                 <form id="mod" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100" required>
-                  <div id="lista-morador"> </div>
-                  <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" id='btn-voltar'>Voltar</button>
                 </form>
               </div>
-              <!-- end Lista Morador-->
+              
 
-              <div class="px-2 my-2 justify-content-center row">
-                <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" onclick="cadastrarMorador()">Cadastrar</button>
-                <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" id='btn-div'  onclick="listarMorardor()">Consultar</button>
-              </div>
+            </div> <!-- END +DIV Lista Morador-->
 
-            </form>
           </div>
 
         </div><!-- end Cadastro Morador-->
@@ -205,7 +225,6 @@
 
 
   <!-- TODO O SCRIPT ESTA DENTRO DO ARQUIVO '../assets/js/main.js' -->
-
 
 </body>
 
