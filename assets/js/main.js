@@ -255,6 +255,8 @@ function cadastrarMorador()
 	
 }
 
+
+
 function listarMorardor()
 {
 	//da um GET no endpoint "moradores"
