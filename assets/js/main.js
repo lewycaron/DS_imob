@@ -118,12 +118,12 @@ document.addEventListener('DOMContentLoaded', () => {
   function validarFormulario3() {
     var tipo_pagamento = document.getElementById("tipo_pagamento").value;
     if (tipo_pagamento == '') {
-      alert("Campo tipo pagamento é Obrigatorio")
+      alert("Campo tipo pagamento Obrigatorio")
     }
 
     var valor_pagamento = document.getElementById("valor_pagamento").value;
     if (valor_pagamento == '') {
-      alert("Campo valor pagamento é Obrigatorio")
+      alert("Campo valor pagamento Obrigatorio")
     }
   }
 
@@ -250,7 +250,7 @@ function cadastrarMorador()
 	.catch((error) =>
 	{
 		console.log(error)
-		alert('Não foi possível efetuar o cadastro! :(')
+		alert('Nao foi possivel efetuar o cadastro! :(')
 	})
 	
 }
@@ -355,37 +355,35 @@ function goBack() {
     window.history.back()
 }
 
-function changeDiv(){
+var btn = document.getElementById('btn-div');
+var listaM = document.querySelector('.listaM');
+var PrincipalM = document.querySelector('.PrincipalM');
+btn.addEventListener('click', function() {
+    
+  if(listaM.style.display === 'none') {
+	PrincipalM.style.display = 'block';
+  } else {
+	listaM.style.display = 'block';
+	PrincipalM.style.display = 'none';
+  }
 
-  var btn = document.getElementById('btn-div');
-  
-  var listaM = document.querySelector('.listaM');
-  var PrincipalM = document.querySelector('.PrincipalM');
-   
-  btn.addEventListener('click', function() {
-      
-    if(listaM.style.display === 'none') {
-    PrincipalM.style.display = 'block';
-    } else {
-    listaM.style.display = 'block';
-    PrincipalM.style.display = 'none';
-    }
-  
-  })
+});
 
+var btnVM = document.getElementById('btn-voltarM');
+btnVM.addEventListener('click', function () {
 
-}
-
-
-var btnV = document.getElementById('btn-voltar');
-btnV.addEventListener('click', function() {
-
-  listaM.style.display = 'none';
+    listaM.style.display = 'none';
 	PrincipalM.style.display = 'block'
 
-  });
+});
 
+var btnVC = document.getElementById('btn-voltarC');
+btnVC.addEventListener('click', function() {
 
-
+  listaC.style.display = 'none';
+  PrincipalC.style.display = 'block';
+  
+});
+  
 
 /** FIM CRUD MORADOR*/

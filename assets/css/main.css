@@ -595,9 +595,19 @@ section {
     transform: rotate(360deg);
   }
 }
+/*--------------------------------------------------------------
+# esconde divis de consultar
+--------------------------------------------------------------*/
+
 .listaM{
   display: none;
 }
 .PrincipalM{
+  display: block;
+}
+.listaC{
+  display: none;
+}
+.PrincipalC{
   display: block;
 }
