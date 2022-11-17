@@ -117,6 +117,15 @@ function getMoradorById(id) {
 
 }
 
+function isEmpty(campo)
+{
+	if(campo == null || campo == "")
+	{
+		return true
+	}
+	return false
+}
+
 function cadastrarCobranca()
 {
 	let id_morador = document.getElementsByClassName('selectMorador')[0]
@@ -124,13 +133,37 @@ function cadastrarCobranca()
 	let tipo_pagamento = document.getElementById('tipo_pagamento')
 	let vencimento = document.getElementById('data_pagamento')
 
+	if(id_morador.value == "Selecione...")
+	{
+		alert("Preencha um morador!")
+		return;
+	}
+
+	if(id_condominio.value == "Selecione...")
+	{
+		alert("Preencha um condominio!")
+		return;
+	}
+
+	if(isEmpty(tipo_pagamento.value))
+	{
+		alert("Preencha um tipo do pagamento!")
+		return;
+	}
+
+	if(isEmpty(vencimento.value))
+	{
+		alert("Escolha uma data de vencimento!")
+		return;
+	}
+
 	let json = {
 		'id_morador': id_morador.value,
 		'id_condominio': id_condominio.value,
 		'tipo_pagamento': tipo_pagamento.value,
 		'vencimento': vencimento.value
 	}
-
+	console.log(json)
 	create('cobranca/adicionar', json)
 
 	console.log()
@@ -147,6 +180,24 @@ function cadastrarMorador() {
 	let nome = document.getElementById('morador_nome')
 	let email = document.getElementById('morador_email')
 	let cep = document.getElementById('morador_cep')
+
+	if(isEmpty(nome.value))
+	{
+		alert("Digite um nome pro morador")
+		return;
+	}
+
+	if(isEmpty(email.value))
+	{
+		alert("Digite um email pro morador")
+		return;
+	}
+
+	if(isEmpty(cep.value))
+	{
+		alert("Digite um cep pro morador")
+		return;
+	}
 
 	if (select.value == "Selecione...") {
 		alert("Selecione uma opção de condominio!")
@@ -174,6 +225,18 @@ function cadastrarMorador() {
 function cadastrarCondominio() {
 	let nome = document.getElementById('nome_condominio')
 	let cidade = document.getElementById('cidade_condominio')
+
+	if(isEmpty(nome.value))
+	{
+		alert("Digite o nome do condominio")
+		return
+	}
+
+	if(isEmpty(cidade.value))
+	{
+		alert("Digite uma cidade para o condominio")
+		return
+	}
 
 	let json = {
 		'nome_condominio': nome.value,

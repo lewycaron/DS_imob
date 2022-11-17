@@ -149,8 +149,15 @@
             <form id="cad" method="post" action="#" required role="form" class="php-email-form" data-aos="fade-up"
               data-aos-delay="100">
               <div class="my-2 col-lg col-md">
-                <input type="text" name="tipo_pagamento" maxlength="40" class="form-control" id="tipo_pagamento"
-                  required placeholder="Informe o tipo de pagamento" data-rule="minlen:4">
+                <!-- <input type="text" name="tipo_pagamento" maxlength="40" class="form-control" id="tipo_pagamento"
+                  required placeholder="Informe o tipo de pagamento" data-rule="minlen:4"> -->
+
+                  <select class="form-select" name="" id="tipo_pagamento">
+                    <option value="boleto">Boleto</option>
+                    <option value="pix">Pix</option>
+                    <option value="credito">Credito</option>
+                    <option value="debito">Debito</option>
+                  </select>
 
               </div>
 
