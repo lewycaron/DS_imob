@@ -507,7 +507,7 @@ section {
 
 .condominio .php-email-form p {
   font-size: 14px;
-  margin-bottom: 20px;
+  margin: 20px;
 }
 
 .condominio .php-email-form .error-message {
@@ -619,4 +619,11 @@ section {
 }
 .PrincipalC{
   display: block;
+}
+
+.paragrafoForm {
+  margin: 10px;
+  padding: 5px;
+  font-size: 14px;
+  color: #333;
 }

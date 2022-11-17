@@ -83,9 +83,9 @@
 
               <div class="px-2 my-2 justify-content-center row">
                 <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" id="btn1"
-                  onclick='validarFormulario()'>Cadastrar</button>
+                  onclick='cadastrarCondominio()'>Cadastrar</button>
                   <button type="button" class="btn btn-primary col-lg p-1 m-1 btn btn-info text-white"
-                  data-bs-toggle="modal" data-bs-target="#staticBackdropCond">Consultar</button>
+                  data-bs-toggle="modal" data-bs-target="#staticBackdropCond" onclick="listarCondominio()">Consultar</button>
                 
               </div>
             </form>
@@ -124,7 +124,7 @@
                 <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button"
                   onclick="cadastrarMorador()">Cadastrar</button>
                 <button type="button" class="btn btn-primary col-lg p-1 m-1 btn btn-info text-white"
-                  data-bs-toggle="modal" data-bs-target="#staticBackdrop">Consultar</button>
+                  data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="listarMorardor()">Consultar</button>
                 <!-- Button trigger modal -->
               </div>
 
@@ -195,8 +195,6 @@
 
           </div>
           <div class="modal-footer">
-            <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" id='btn-morador'
-              onclick="listarMorardor()"> Listar </button>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
@@ -219,7 +217,6 @@
               <!-- Lista Condominio-->
               <div >
                 
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <form id="mod" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100" required>
                   <div id="lista-condominio"></div>
                 </form>
@@ -229,8 +226,7 @@
 
           </div>
           <div class="modal-footer">
-            <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" id='btn-condominio' onclick="listarCondominio()">Consultar</button>
-            <button type="button" class="text-center col-lg p-1 m-1 btn btn-info text-white" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="text-center col-lg p-1 m-1 btn btn-secondary text-white" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
