@@ -48,7 +48,7 @@
     </div>
   </section><!-- End -->
 
-  <!-- =======  Condominio ======= -->
+  <!-- =======  Bloco ======= -->
   <section id="condominio" class="condominio">
     <div class="container" data-aos="fade-up">
 
@@ -57,36 +57,36 @@
         <p>Condominio<span>novo</span>Condominio</p>
       </div>
 
-      <!--Cadastro condominio-->
+
       <div class="row justify-content-center m-2">
+
+        <!--Cadastro condominio-->
         <div class="col-lg mx-1 d-flex reservation-form-bg justify-content-center">
           <div>
             <div class="section-header  mt-0">
               <p><span>Condominio</span></p>
             </div>
-            <form id="cad" method="post" action="#" required role="form" class="php-condominio-form" data-aos="fade-up" data-aos-delay="100">
+            <form id="cad" method="post" action="#" required role="form" class="php-condominio-form" data-aos="fade-up"
+              data-aos-delay="100">
               <div class="PrincipalC">
                 <div class="my-2 col-lg col-md">
-                  <input type="text" name="nome_condominio" maxlength="40" class="form-control" id="nome_condominio" required placeholder="Nome do Condominio" data-rule="minlen:4">
+                  <input type="text" name="nome_condominio" maxlength="40" class="form-control" id="nome_condominio"
+                    required placeholder="Nome do Condominio" data-rule="minlen:4">
                   <div class="validate"></div>
                 </div>
                 <div class="my-2 col-lg col-md">
-                  <input type="text" class="form-control" name="cidade_condominio" id="cidade_condominio" placeholder="Cidade do Condominio" data-rule="minlen:1" data-msg="Insira uma cidade Real">
+                  <input type="text" class="form-control" name="cidade_condominio" id="cidade_condominio"
+                    placeholder="Cidade do Condominio" data-rule="minlen:1" data-msg="Insira uma cidade Real">
                   <div class="validate"></div>
                 </div>
-               </div>
-              <!-- Lista Condominio-->
-              <div class="listaC">
-                <p>Esta div nao sera exibida</p>
-                <form id="mod" role="form" class="php-condominio-form" data-aos="fade-up" data-aos-delay="100" required>
-                  <div id="lista-condominio"> </div>
-                  <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" id='btn-voltarC'>Voltar</button>
-                </form>
               </div>
-              <!-- end Lista Condominio-->
+
               <div class="px-2 my-2 justify-content-center row">
-                <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" id="btn1" onclick='javascript: validarFormulario()'>Cadastrar</button>
-                <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" id='btn-condominio' onclick="listarCondominio()">Consultar</button>
+                <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" id="btn1"
+                  onclick='javascript: validarFormulario()'>Cadastrar</button>
+                  <button type="button" class="btn btn-primary col-lg p-1 m-1 btn btn-info text-white"
+                  data-bs-toggle="modal" data-bs-target="#staticBackdropCond">Consultar</button>
+                
               </div>
             </form>
           </div>
@@ -115,6 +115,7 @@
                   <input type="text" class="form-control" id="morador_cep" placeholder="CEP" onblur="getLogradouro()">
                 </div>
 
+                <!-- REMOVIDO DO FORM ----
                 <div class="my-2 col-lg col-md">
                   <input id="morador_logradouro" class="form-control" placeholder="Logradouro" type="text" />
                 </div>
@@ -122,25 +123,21 @@
                 <div class="my-2 col-lg col-md">
                   <input id="morador_numero" class="form-control" placeholder="Número" type="number" />
                 </div>
-                
+
                 <div class="my-2 col-lg col-md">
                   <input id="morador_complemento" class="form-control" placeholder="Complemento" Type="text" />
                 </div>
+                -->
+
               </div>
 
-              <!-- Lista Morador-->
-              <div class="listaM">
-                <p>Esta div nao sera exibida</p>
-                <form id="mod" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100" required>
-                  <div id="lista-morador"> </div>
-                  <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" id='btn-voltarM'>Voltar</button>
-                </form>
-              </div>
-              <!-- end Lista Morador-->
 
               <div class="px-2 my-2 justify-content-center row">
-                <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" onclick="cadastrarMorador()">Cadastrar</button>
-                <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" id='btn-morador'  onclick="listarMorardor()">Consultar</button>
+                <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button"
+                  onclick="cadastrarMorador()">Cadastrar</button>
+                <button type="button" class="btn btn-primary col-lg p-1 m-1 btn btn-info text-white"
+                  data-bs-toggle="modal" data-bs-target="#staticBackdrop">Consultar</button>
+                <!-- Button trigger modal -->
               </div>
 
             </form>
@@ -148,11 +145,10 @@
 
         </div><!-- end Cadastro Morador-->
 
+
         <!-- Cobranca -->
-
-
         <div class="col-lg mx-1 d-flex reservation-form-bg justify-content-center">
-          
+
           <div>
             <div class="section-header  mt-0">
               <p><span>Cobranca</span></p>
@@ -175,23 +171,93 @@
 
               </div>
               <div class="px-2 my-2 justify-content-center row">
-                <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" id="btn4" onclick='javascript: validarCobranca()'>Cadastrar</button>
-                <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" id="btn-cobranca" onclick='javascript: ListarCobranca()'>Baixar</button>
+                <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" id="btn4"
+                  onclick='javascript: validarCobranca()'>Cadastrar</button>
+                <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" id="btn-cobranca"
+                  onclick='javascript: ListarCobranca()'>Baixar</button>
               </div>
             </form>
           </div>
         </div><!-- end Cobranca-->
 
       </div>
+
     </div>
-  </section><!-- End -->
+  </section><!-- End bloco -->
 
+  <section id="modal-moradores" class="container">
+    <!-- Modal moradores-->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
 
-  <section class="condominio">
-    <div class="container" data-aos="fade-up">
+            <!-- Lista Morador-->
+            <div class="listaM">
 
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+             
+              <form id="mod" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100" required>
+                <div id="lista-morador"> </div>
+              </form>
+
+            </div>
+            <!-- end Lista Morador-->
+
+          </div>
+          <div class="modal-footer">
+            <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" id='btn-morador'
+              onclick="listarMorardor()"> Listar </button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
+
+
+  <section id="modal-condominio" class="container">
+    <!-- Modal condominio-->
+    <div class="modal fade" id="staticBackdropCond" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+              <!-- Lista Condominio-->
+              <div class="listaC">
+                
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                
+                <form id="mod" role="form" class="php-condominio-form" data-aos="fade-up" data-aos-delay="100" required>
+                  <div id="lista-condominio"> </div>
+                </form>
+              </div>
+
+              <!-- end Lista Condominio-->
+
+          </div>
+          <div class="modal-footer">
+            <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" id='btn-condominio'
+            onclick="listarCondominio()">Consultar</button>
+            <button type="button" class="text-center col-lg p-1 m-1 btn btn-info text-white" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
 
   <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
