@@ -361,6 +361,7 @@ btnVM.addEventListener('click', function () {
 	PrincipalM.style.display = 'block';
 
 });
+
 /** FIM CRUD MORADOR*/
 
 //lista-condominio
@@ -384,7 +385,7 @@ function listarCondominio() {
 			for (let condominio of condominios) {
 				//cria div para as informacoes de um condominio
 				let divcondominio = document.createElement('div')
-				divcondominio.setAttribute('class', 'php-condominio-form')
+				divcondominio.setAttribute('class', 'php-email-form')
 
 				//pega o nome do condominio
 				let divNomeC = document.createElement('input')
@@ -428,9 +429,11 @@ function listarCondominio() {
 }
 
 //consultar condominio 
+
 var btnC = document.getElementById('btn-condominio');
 var listaC = document.querySelector('.listaC');
 var PrincipalC = document.querySelector('.PrincipalC');
+
 btnC.addEventListener('click', function () {
 
 	PrincipalC.style.display = 'none';
@@ -446,6 +449,8 @@ btnVC.addEventListener('click', function () {
 
 });
 /** FIM CRUD CONDOMINIO*/
+
+
 
 function listarCobranca() {
 	//da um GET no endpoint "cobranca"
