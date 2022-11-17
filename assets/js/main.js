@@ -25,15 +25,22 @@ document.addEventListener('DOMContentLoaded', () => {
 	window.addEventListener('load', () => {
 		aos_init();
 
-		let classeRef = document.getElementsByClassName("optionsCondominio")[0]
-		createSelectCondominio(classeRef);
+		let classeRef1 = document.getElementsByClassName("optionsCondominio")[0]
+		createSelectCondominio(null, classeRef1);
+		let classeRef2 = document.getElementsByClassName("optionsCondominio")[1]
+		createSelectCondominio(null, classeRef2)
+		let classRef3 = document.getElementsByClassName("optionsMoradores")[0]
+		createSelectMorador(null, classRef3)
 	});
 });
 
-function createSelectCondominio(id = null) {
+function createSelectCondominio(id = null, ref) {
 	let select = document.createElement('select')
 	select.setAttribute('class', 'form-select selectCondo')
-	select.setAttribute('id', id)
+	if(id != null)
+	{
+		select.setAttribute('id', id)
+	}
 
 	let options = document.createElement('option')
 	options.innerHTML = "Selecione..."
@@ -48,11 +55,49 @@ function createSelectCondominio(id = null) {
 		}
 	})
 
+	if(ref != null)
+	{
+		ref.appendChild(select)
+	}
+
+	return select
+}
+
+function createSelectMorador(id = null, ref) {
+	let select = document.createElement('select')
+	select.setAttribute('class', 'form-select selectMorador')
+	if(id != null)
+	{
+		select.setAttribute('id', id)
+	}
+
+	let options = document.createElement('option')
+	options.innerHTML = "Selecione..."
+	select.appendChild(options)
+
+	getAllMoradores().then((res) => {
+		for (let moradores of res) {
+			options = document.createElement('option')
+			options.value = moradores.id
+			options.innerHTML = moradores.nome
+			select.appendChild(options)
+		}
+	})
+
+	if(ref != null)
+	{
+		ref.appendChild(select)
+	}
+
 	return select
 }
 
 function getAllCondominio() {
 	return fetch(url + `condominio/getAll`).then((res) => res.json())
+}
+
+function getAllMoradores() {
+	return fetch(url + `moradores/getAll`).then((res) => res.json())
 }
 
 function getCondominioById(id) {
@@ -61,10 +106,41 @@ function getCondominioById(id) {
 	request.send(null);
 
 	return JSON.parse(request.response);
+}
+
+function getMoradorById(id) {
+	var request = new XMLHttpRequest();
+	request.open('GET', url + `moradores/get/${id}`, false);  // `false` makes the request synchronous
+	request.send(null);
+
+	return JSON.parse(request.response);
 
 }
 
-/** INICIO CRUD MORADOR*/
+function cadastrarCobranca()
+{
+	let id_morador = document.getElementsByClassName('selectMorador')[0]
+	let id_condominio = document.getElementsByClassName('selectCondo')[1]
+	let tipo_pagamento = document.getElementById('tipo_pagamento')
+	let vencimento = document.getElementById('data_pagamento')
+
+	let json = {
+		'id_morador': id_morador.value,
+		'id_condominio': id_condominio.value,
+		'tipo_pagamento': tipo_pagamento.value,
+		'vencimento': vencimento.value
+	}
+
+	create('cobranca/adicionar', json)
+
+	console.log()
+
+	let sec = document.getElementById('lista-cobranca')
+
+	let info = createParagrafo((tipo_pagamento.value + " - " + vencimento.value + " - " + getCondominioById(id_condominio.value).data.nome_condominio + " - " + getMoradorById(id_morador.value).nome))
+	sec.appendChild(info)
+
+}
 
 function cadastrarMorador() {
 	let select = document.getElementsByClassName('selectCondo')[0]
@@ -175,11 +251,12 @@ function listarMorardor() {
 				divmorador.appendChild(divCEP)
 
 				let rep = getCondominioById(morador.id_condominio);
+				console.log(rep)
 				let condominioP = createParagrafo("Condominio -> " + rep.data.nome_condominio)
 				divmorador.appendChild(condominioP)
 
 				let id = `${morador.cep}${morador.id}`;
-				divmorador.appendChild(createSelectCondominio(divmorador, id))
+				divmorador.appendChild(createSelectCondominio(id, divmorador))
 
 
 
@@ -196,13 +273,39 @@ function listarMorardor() {
 
 				btnAtualizar.addEventListener('click', function () {
 					let option = document.getElementById(id)
+					let nomeMorador;
+					let emailMorador;
+					let cepMorador;
+
+					if(divNome.value == null || divNome.value == "")
+					{
+						nomeMorador = morador.nome
+					}else {
+						nomeMorador = divNome.value
+					}
+
+					if(divEmail.value == null || divEmail.value == "")
+					{
+						emailMorador = morador.email
+					}else {
+						emailMorador = divEmail.value
+					}
+
+					if(divCEP.value == null || divCEP.value == "")
+					{
+						cepMorador = morador.cep
+					}else {
+						cepMorador = divCEP.value
+					}
 
 					let json = {
 						'id_condominio': option.value,
-						'nome': divNome.value,
-						'email': divEmail.value,
-						'cep': divCEP.value
+						'nome': nomeMorador,
+						'email': emailMorador,
+						'cep': cepMorador
 					}
+
+					console.log(json)
 
 					update(`moradores/atualizar/${morador.id}`, json)
 						.then((res) => alert('Morador atualizado com sucesso!'))
@@ -222,16 +325,15 @@ function listarMorardor() {
 
 }
 
-
 function listarCondominio() {
 	//da um GET no endpoint "condominio"
 	fetch(url + 'condominio/getAll')
 		.then(response => response.json())
 		.then((condominios) => {
-			let listarCondominio = document.getElementById('lista-condominio')
+			let listaCondominio = document.getElementById('lista-condominio')
 
-			while (listarCondominio.firstChild) {
-				listarCondominio.removeChild(listarCondominio.firstChild)
+			while (listaCondominio.firstChild) {
+				listaCondominio.removeChild(listaCondominio.firstChild)
 			}
 
 			for (let condominio of condominios) {
@@ -254,14 +356,37 @@ function listarCondominio() {
 				let btnAtualizar = createButtonAtualizar();
 
 				btnAtualizar.addEventListener('click', function () {
+					let nomeCondominio;
+					let cidadeCondominio;
+
+					if(divNomeC.value == null || divNomeC.value == "")
+					{
+						nomeCondominio = condominio.nome_condominio
+					}else {
+						nomeCondominio = divNomeC.value
+					}
+
+					if(divCidade.value == null || divCidade.value == "")
+					{
+						cidadeCondominio = condominio.cidade_condominio
+					}else {
+						cidadeCondominio = divCidade.value
+					}
 
 					let json = {
-						'nome_condominio': divNomeC.value,
-						'cidade_condominio': divCidade.value
+						'nome_condominio': nomeCondominio,
+						'cidade_condominio': cidadeCondominio
 					}
 
 					update(`condominio/atualizar/${condominio.id}`, json)
 					.then((res) => alert('Condominio atualizado com sucesso!'))
+				})
+
+				btnRemover.addEventListener('click', function (){
+					deletar(`condominio/deletar/${condominio.id}`).then(() => {
+						alert('Condominio deletado com sucesso!')
+						listarCondominio()
+					})
 				})
 
 				let divBotoes = document.createElement('div')
@@ -274,13 +399,10 @@ function listarCondominio() {
 				divcondominio.appendChild(linha)
 
 				//insere a div do morador na div com a lista de moradores
-				listarCondominio.appendChild(divcondominio)
+				listaCondominio.appendChild(divcondominio)
 			}
 		})
 }
-
-//consultar condominio 
-
 
 function createParagrafo(value) {
 	let paragrafo = document.createElement('p')
@@ -300,7 +422,6 @@ function createInput() {
 	return input
 }
 
-
 function createButtonRemove() {
 	let btnRemover = document.createElement('button')
 	btnRemover.innerHTML = 'Remover'
@@ -318,36 +439,3 @@ function createButtonAtualizar() {
 
 	return btnAtualizar
 }
-
-/** FIM CRUD CONDOMINIO*/
-
-
-
-function listarCobranca() {
-	//da um GET no endpoint "cobranca"
-	fetch(url + 'cobranca/getAll')
-		.then(response => response.json())
-		.then((cobrancas) => {
-			//pega div que vai conter a lista de cobranca
-			let listarCobranca = document.getElementById('lista-cobranca')
-
-
-			//preenche div com cobranca recebidos do GET
-			for (let cobranca of cobrancas) {
-				//cria div para as informacoes de um condominio
-				let divcobranca = document.createElement('div')
-				divcobranca.setAttribute('class', 'php-email-form')
-
-				//pega o nome do cobranca
-				let divNome = document.createElement('input')
-				divNome.placeholder = 'Nome Completo'
-				divNome.value = cobranca.nome
-				divNome.setAttribute('class', 'form-control')
-				divcobranca.appendChild(divNome)
-
-				//insere a div do morador na div com a lista de moradores
-				listarCobranca.appendChild(divcobranca)
-			}
-		})
-}
-/** FIM CRUD COBRANCA*/

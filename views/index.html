@@ -66,17 +66,20 @@
             <div class="section-header  mt-0">
               <p><span>Condominio</span></p>
             </div>
-            <form id="cad" method="post" action="#" required role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
-              
+            <form id="cad" method="post" action="#" required role="form" class="php-email-form" data-aos="fade-up"
+              data-aos-delay="100">
+
               <div class="PrincipalC">
 
                 <div class="my-2 col-lg col-md">
-                  <input type="text" name="nome_condominio" maxlength="40" class="form-control" id="nome_condominio" required placeholder="Nome do Condominio" data-rule="minlen:4">
+                  <input type="text" name="nome_condominio" maxlength="40" class="form-control" id="nome_condominio"
+                    required placeholder="Nome do Condominio" data-rule="minlen:4">
                   <div class="validate"></div>
                 </div>
-                
+
                 <div class="my-2 col-lg col-md">
-                  <input type="text" class="form-control" name="cidade_condominio" id="cidade_condominio" placeholder="Cidade do Condominio" data-rule="minlen:1" data-msg="Insira uma cidade Real">
+                  <input type="text" class="form-control" name="cidade_condominio" id="cidade_condominio"
+                    placeholder="Cidade do Condominio" data-rule="minlen:1" data-msg="Insira uma cidade Real">
                   <div class="validate"></div>
                 </div>
               </div>
@@ -84,9 +87,10 @@
               <div class="px-2 my-2 justify-content-center row">
                 <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" id="btn1"
                   onclick='cadastrarCondominio()'>Cadastrar</button>
-                  <button type="button" class="btn btn-primary col-lg p-1 m-1 btn btn-info text-white"
-                  data-bs-toggle="modal" data-bs-target="#staticBackdropCond" onclick="listarCondominio()">Consultar</button>
-                
+                <button type="button" class="btn btn-primary col-lg p-1 m-1 btn btn-info text-white"
+                  data-bs-toggle="modal" data-bs-target="#staticBackdropCond"
+                  onclick="listarCondominio()">Consultar</button>
+
               </div>
             </form>
           </div>
@@ -103,7 +107,8 @@
             <form id="mod" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100" required>
               <div>
                 <div class="my-2 col-lg col-md">
-                  <input type="text" class="form-control" name="morador_nome" id="morador_nome" placeholder="Nome" required>
+                  <input type="text" class="form-control" name="morador_nome" id="morador_nome" placeholder="Nome"
+                    required>
                 </div>
 
                 <div class="my-2 col-lg col-md">
@@ -115,7 +120,7 @@
                 </div>
 
                 <div class="optionsCondominio">
-                  
+
                 </div>
               </div>
 
@@ -148,21 +153,19 @@
                   required placeholder="Informe o tipo de pagamento" data-rule="minlen:4">
 
               </div>
-              <div class="my-2 col-lg col-md">
-                <input type="text" name="valor_pagamento" maxlength="40" class="form-control" id="valor_pagamento"
-                  required placeholder="Informe o Valor de pagamento" data-rule="minlen:4">
 
-              </div>
               <div class="my-2 col-lg col-md">
                 <input type="date" name="data_pagamento" maxlength="40" class="form-control" id="data_pagamento"
                   required placeholder="Informe a data de pagamento" data-rule="minlen:4">
 
               </div>
+
+              <div class="optionsCondominio"></div>
+              <div class="optionsMoradores"></div>
               <div class="px-2 my-2 justify-content-center row">
-                <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" id="btn4"
-                  onclick='javascript: validarCobranca()'>Cadastrar</button>
-                <button class="text-center col-lg p-1 m-1 btn btn-info text-white" type="button" id="btn-cobranca"
-                  onclick='javascript: ListarCobranca()'>Baixar</button>
+                <button type="button" class="btn btn-primary col-lg p-1 m-1 btn btn-info text-white"
+                  data-bs-toggle="modal" data-bs-target="#staticBackdropCobranca"
+                  onclick="cadastrarCobranca()">Baixar</button>
               </div>
             </form>
           </div>
@@ -172,9 +175,9 @@
 
     </div>
   </section><!-- End bloco -->
- 
+
   <!-- Modal moradores-->
-  <section id="modal-moradores" class="container"> 
+  <section id="modal-moradores" class="container">
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
       aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -203,7 +206,7 @@
   </section>
 
   <!-- Modal condominio-->
-  <section id="modal-condominio" class="container"> 
+  <section id="modal-condominio" class="container">
     <div class="modal fade" id="staticBackdropCond" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
       aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -214,19 +217,55 @@
           </div>
 
           <div class="modal-body">
-              <!-- Lista Condominio-->
-              <div >
-                
-                <form id="mod" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100" required>
-                  <div id="lista-condominio"></div>
-                </form>
+            <!-- Lista Condominio-->
+            <div>
 
-              </div>
-              <!-- end Lista Condominio-->
+              <form id="mod" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100" required>
+                <div id="lista-condominio"></div>
+              </form>
+
+            </div>
+            <!-- end Lista Condominio-->
 
           </div>
           <div class="modal-footer">
-            <button type="button" class="text-center col-lg p-1 m-1 btn btn-secondary text-white" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="text-center col-lg p-1 m-1 btn btn-secondary text-white"
+              data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="modal-cobranca" class="container">
+    <div class="modal fade modal-lg" id="staticBackdropCobranca" data-bs-backdrop="static" data-bs-keyboard="false"
+      tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Boleto</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            <!-- Lista Condominio-->
+            <div>
+
+              <form id="mod" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100" required>
+                <div id="lista-cobranca">
+                  <img width="100%" src="../assets/img/gerar-boleto-com-codigo-de-barras.png" alt="">
+                </div>
+              </form>
+
+            </div>
+
+            
+            <!-- end Lista Condominio-->
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="text-center col-lg p-1 m-1 btn btn-secondary text-white"
+              data-bs-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
