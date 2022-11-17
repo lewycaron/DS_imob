@@ -5,6 +5,15 @@
   --font-secondary: "Inter", sans-serif;
 }
 
+.button {
+  color: white;
+  margin: 15px 5px;
+}
+
+.form-control {
+  margin-top: 5px;
+}
+
 /* Colors */
 :root {
   --color-default: #212529;
