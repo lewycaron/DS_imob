@@ -101,7 +101,7 @@
             </div>
 
             <form id="mod" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100" required>
-              <div class=" PrincipalM">
+              <div>
                 <div class="my-2 col-lg col-md">
                   <input type="text" class="form-control" name="morador_nome" id="morador_nome" placeholder="Nome" required>
                 </div>
@@ -111,23 +111,14 @@
                 </div>
 
                 <div class="my-2 col-lg col-md">
-                  <input type="text" class="form-control" id="morador_cep" placeholder="CEP" onblur="getLogradouro()">
+                  <input type="text" class="form-control" id="morador_cep" placeholder="CEP">
                 </div>
 
-                <!-- REMOVIDO DO FORM ----
-                <div class="my-2 col-lg col-md">
-                  <input id="morador_logradouro" class="form-control" placeholder="Logradouro" type="text" />
+                <div>
+                  <select name="" id="">
+                    <option value="">dadsda</option>
+                  </select>
                 </div>
-
-                <div class="my-2 col-lg col-md">
-                  <input id="morador_numero" class="form-control" placeholder="Número" type="number" />
-                </div>
-
-                <div class="my-2 col-lg col-md">
-                  <input id="morador_complemento" class="form-control" placeholder="Complemento" Type="text" />
-                </div>
-                -->
-
               </div>
 
 
@@ -191,20 +182,16 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+            <h5 class="modal-title" id="staticBackdropLabel">Lista de moradores</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
 
             <!-- Lista Morador-->
-            <div class="listaM">
-
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-             
+            <div>
               <form id="mod" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100" required>
                 <div id="lista-morador"> </div>
               </form>
-
             </div>
             <!-- end Lista Morador-->
 
