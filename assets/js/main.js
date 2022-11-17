@@ -30,12 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 });
 
-function createSelectCondominio(ref, id, id_condominio) {
+function createSelectCondominio(id = null) {
 	let select = document.createElement('select')
 	select.setAttribute('class', 'form-select selectCondo')
 	select.setAttribute('id', id)
-
-	
 
 	let options = document.createElement('option')
 	options.innerHTML = "Selecione..."
@@ -45,100 +43,103 @@ function createSelectCondominio(ref, id, id_condominio) {
 		for (let condominios of res) {
 			options = document.createElement('option')
 			options.value = condominios.id
-			// condominios.id = options.value
 			options.innerHTML = condominios.nome_condominio
 			select.appendChild(options)
 		}
 	})
 
-	/**
-	 * 
-	 *  Select
-	 * 		options
-	 * 			value
-	 * 			texto (visivel)
-	 */	
-
-	// console.log(select.options[select.selectedIndex].value)
-
-	select.options[selectedOptions].selected = true
-	
-
-	// console.log(select.options[1])
-	// select.options[select.selectedOptions] = 1
-
-	// select.options[select.selectedIndex].value
-	
-	
-
-	// select.selectedOptions = id_condominio
-
-	// console.log(select.selectedOptions)
-
-	// console.log(id_condominio)
-	
-	// select.options[id_condominio].selected = true
-
-
-
-	console.log(select.selectedOptions)
-
-	ref.appendChild(select)
+	return select
 }
 
 function getAllCondominio() {
 	return fetch(url + `condominio/getAll`).then((res) => res.json())
 }
 
+function getCondominioById(id) {
+	var request = new XMLHttpRequest();
+	request.open('GET', url + `condominio/get/${id}`, false);  // `false` makes the request synchronous
+	request.send(null);
+
+	return JSON.parse(request.response);
+
+}
+
 /** INICIO CRUD MORADOR*/
 
 function cadastrarMorador() {
-	//construcao do json que vai no body da criacao de usuario	
-	let body =
-	{
-		'Nome': document.getElementById('morador_nome').value,
-		'Email': document.getElementById('morador_email').value,
-		'Cep': document.getElementById('morador_cep').value,
-		'Logradouro': document.getElementById('morador_logradouro').value,
-		'Numero': document.getElementById('morador_numero').value,
-		'Complemento': document.getElementById('morador_complemento').value,
-	};
+	let select = document.getElementsByClassName('selectCondo')[0]
+	let nome = document.getElementById('morador_nome')
+	let email = document.getElementById('morador_email')
+	let cep = document.getElementById('morador_cep')
 
-	fetch(url + "moradores/cadastrar",
+	if (select.value == "Selecione...") {
+		alert("Selecione uma opção de condominio!")
+		return;
+	}
+
+	let json = {
+		'id_condominio': select.value,
+		'nome': nome.value,
+		'email': email.value,
+		'cep': cep.value
+	}
+
+	create('moradores/cadastrar', json).then((res) => {
+		alert("Morador salvo com sucesso!")
+
+		nome.value = ""
+		email.value = ""
+		cep.value = ""
+		select.value = "Selecione..."
+	})
+
+}
+
+function cadastrarCondominio() {
+	let nome = document.getElementById('nome_condominio')
+	let cidade = document.getElementById('cidade_condominio')
+
+	let json = {
+		'nome_condominio': nome.value,
+		'cidade_condominio': cidade.value
+	}
+
+	create('condominio/cadastrar', json).then((res) => {
+		alert("Condominio cadastrado com sucesso!")
+
+		nome.value = '',
+		cidade.value = ''
+	})
+}
+
+function update(path, json) {
+	return fetch(url + path,
 		{
-			'method': 'POST',
-			'redirect': 'follow',
+			'method': 'PUT',
 			'headers':
 			{
-				'Content-Type': 'application/json',
-				'Accept': 'application/json'
+				'Content-Type': 'application/json'
 			},
-			'body': JSON.stringify(body)
+			'body': JSON.stringify(json)
 		})
+}
 
-		.then((response) => {
-			if (response.ok) {
-				return response.text()
-			}
-			else {
-				return response.text().then((text) => {
-					throw new Error(text)
-				})
-			}
+function deletar(path) {
+	return fetch(url + path,
+		{
+			'method': 'DELETE'
 		})
+}
 
-		//trata resposta
-		.then((output) => {
-			console.log(output)
-			alert('Cadastro efetuado! :D')
-		})
-
-		//trata erro
-		.catch((error) => {
-			console.log(error)
-			alert('Nao foi possivel efetuar o cadastro! :(')
-		})
-
+function create(path, json) {
+	return fetch(url + path, {
+		'method': 'POST',
+		'headers':
+		{
+			'Content-Type': 'application/json'
+		},
+		'body': JSON.stringify(json)
+	})
 }
 
 function listarMorardor() {
@@ -152,64 +153,45 @@ function listarMorardor() {
 				listaMorador.removeChild(listaMorador.firstChild)
 			}
 
-			//preenche div com moradores recebidos do GET
 			for (let morador of moradores) {
-				
-				//cria div para as informacoes de um morador
 				let divmorador = document.createElement('div')
 				divmorador.setAttribute('class', 'php-email-form')
 
-
-
-				//pega o nome do morador
-				let divNome = document.createElement('input')
-				divNome.placeholder = 'Nome Completo'
-				divNome.value = morador.nome
-				divNome.setAttribute('class', 'form-control nomeMorador')
+				let nomeP = createParagrafo("Morador -> " + morador.nome)
+				let divNome = createInput()
+				divmorador.appendChild(nomeP)
 				divmorador.appendChild(divNome)
 
-				
 
-				//pega o email do morador
-				let divEmail = document.createElement('input')
-				divEmail.placeholder = 'Email'
-				divEmail.value = morador.email
-				divEmail.setAttribute('class', 'form-control')
+				let emailP = createParagrafo("Email -> " + morador.email)
+				let divEmail = createInput()
+				divmorador.appendChild(emailP)
 				divmorador.appendChild(divEmail)
 
 
-				//pega o cep do morador
-				let divCEP = document.createElement('input')
-				divCEP.placeholder = 'CEP'
-				divCEP.value = morador.cep
-				divCEP.setAttribute('class', 'form-control inputForm')
+				let cepP = createParagrafo("Cep -> " + morador.cep)
+				let divCEP = createInput()
+				divmorador.appendChild(cepP)
 				divmorador.appendChild(divCEP)
 
+				let rep = getCondominioById(morador.id_condominio);
+				let condominioP = createParagrafo("Condominio -> " + rep.data.nome_condominio)
+				divmorador.appendChild(condominioP)
+
 				let id = `${morador.cep}${morador.id}`;
-				createSelectCondominio(divmorador, id, morador.id_condominio)
+				divmorador.appendChild(createSelectCondominio(divmorador, id))
 
-				
-				//cria o botao para atualizar o morador
-				let btnAtualizar = document.createElement('button')
-				btnAtualizar.innerHTML = 'Atualizar'
-				btnAtualizar.setAttribute('class', 'btn btn-success button')
-				btnAtualizar.style.marginLeft = '5px'
 
-				//cria o botao para remover o morador
-				let btnRemover = document.createElement('button')
-				btnRemover.innerHTML = 'Remover'
-				btnRemover.setAttribute('class', 'btn btn-danger button')
-				btnRemover.style.marginRight = '5px'
+
+				let btnRemover = createButtonRemove()
+				let btnAtualizar = createButtonAtualizar();
 
 				btnRemover.addEventListener('click', function () {
-					fetch(url + `moradores/deletar/${morador.id}`,
-						{
-							'method': 'DELETE'
-						})
-						.then((res) => {
-							alert('Morador removido com sucesso!')
-							listarMorardor()
-						})
+
+					deletar(`moradores/deletar/${morador.id}`).then(() => {
+						alert('Morador removido com sucesso!')
+						listarMorardor()
+					})
 				})
 
 				btnAtualizar.addEventListener('click', function () {
@@ -222,44 +204,23 @@ function listarMorardor() {
 						'cep': divCEP.value
 					}
 
-					console.log(json)
-
-					fetch(url + `moradores/atualizar/${morador.id}`,
-						{
-							'method': 'PUT',
-							'headers':
-							{
-								'Content-Type': 'application/json'
-							},
-							'body': JSON.stringify(json)
-						})
-						.then()
-						.then((res) => {
-							console.log(res)
-						})
+					update(`moradores/atualizar/${morador.id}`, json)
+						.then((res) => alert('Morador atualizado com sucesso!'))
 				})
 
-				
-				//cria a div com os dois botoes
 				let divBotoes = document.createElement('div')
 				divBotoes.style.display = 'flex'
 				divBotoes.appendChild(btnAtualizar)
 				divBotoes.appendChild(btnRemover)
 				divmorador.appendChild(divBotoes)
 
-				//insere a div do morador na div com a lista de moradores
 				listaMorador.appendChild(divmorador)
 
-				
+
 			}
 		})
+
 }
-
-//consultar morador 
-
-/** FIM CRUD MORADOR*/
-
-//lista-condominio
 
 
 function listarCondominio() {
@@ -267,56 +228,50 @@ function listarCondominio() {
 	fetch(url + 'condominio/getAll')
 		.then(response => response.json())
 		.then((condominios) => {
-			//pega div que vai conter a lista de condominio
 			let listarCondominio = document.getElementById('lista-condominio')
 
-			/*limpa div
-			while(listarCondominio.firstChild)
-			{
+			while (listarCondominio.firstChild) {
 				listarCondominio.removeChild(listarCondominio.firstChild)
 			}
-		*/
 
-			//preenche div com condominio recebidos do GET
 			for (let condominio of condominios) {
-				//cria div para as informacoes de um condominio
 				let divcondominio = document.createElement('div')
 				divcondominio.setAttribute('class', 'php-email-form')
 
-				//pega o nome do condominio
-				let divNomeC = document.createElement('input')
-				divNomeC.placeholder = 'Nome Condominio'
-				divNomeC.value = condominio.nome_condominio
-				divNomeC.setAttribute('class', 'form-control')
+				let paragrafoNome = createParagrafo("Condominio ->  " + condominio.nome_condominio)
+				let paragrafoCidade = createParagrafo("Cidade -> " + condominio.cidade_condominio)
+
+				let divNomeC = createInput()
+				let divCidade = createInput()
+
+				divcondominio.appendChild(paragrafoNome)
 				divcondominio.appendChild(divNomeC)
 
-				//pega o cidade do condominio
-				let divCidade = document.createElement('input')
-				divCidade.placeholder = 'Cidade'
-				divCidade.value = condominio.cidade_condominio
-				divCidade.setAttribute('class', 'form-control')
+				divcondominio.appendChild(paragrafoCidade)
 				divcondominio.appendChild(divCidade)
 
+				let btnRemover = createButtonRemove()
+				let btnAtualizar = createButtonAtualizar();
 
-				//cria o botao para remover o condominio
-				let btnRemover = document.createElement('button')
-				btnRemover.innerHTML = 'Remover'
-				btnRemover.onclick = u => remover(condominio.id)
-				divNomeC.setAttribute('class', 'btn',)
-				btnRemover.style.marginRight = '5px'
+				btnAtualizar.addEventListener('click', function () {
 
-				//cria o botao para atualizar o morador
-				let btnAtualizar = document.createElement('button')
-				btnAtualizar.innerHTML = 'Atualizar'
-				btnAtualizar.onclick = u => atualizar(condominio.id, divNomeC, divCidade,)
-				btnAtualizar.style.marginLeft = '5px'
+					let json = {
+						'nome_condominio': divNomeC.value,
+						'cidade_condominio': divCidade.value
+					}
 
-				//cria a div com os dois botoes
+					update(`condominio/atualizar/${condominio.id}`, json)
+					.then((res) => alert('Condominio atualizado com sucesso!'))
+				})
+
 				let divBotoes = document.createElement('div')
 				divBotoes.style.display = 'flex'
 				divBotoes.appendChild(btnRemover)
 				divBotoes.appendChild(btnAtualizar)
 				divcondominio.appendChild(divBotoes)
+
+				let linha = document.createElement('hr')
+				divcondominio.appendChild(linha)
 
 				//insere a div do morador na div com a lista de moradores
 				listarCondominio.appendChild(divcondominio)
@@ -325,6 +280,44 @@ function listarCondominio() {
 }
 
 //consultar condominio 
+
+
+function createParagrafo(value) {
+	let paragrafo = document.createElement('p')
+	paragrafo.setAttribute('class', 'paragrafoForm')
+
+	paragrafo.innerHTML = value
+
+	return paragrafo
+}
+
+function createInput() {
+	let input = document.createElement('input')
+	input.placeholder = 'Alterar'
+	input.style.fontSize = "13px";
+	input.setAttribute('class', 'form-control')
+
+	return input
+}
+
+
+function createButtonRemove() {
+	let btnRemover = document.createElement('button')
+	btnRemover.innerHTML = 'Remover'
+	btnRemover.setAttribute('class', 'btn btn-danger button')
+	btnRemover.style.marginRight = '5px'
+
+	return btnRemover
+}
+
+function createButtonAtualizar() {
+	let btnAtualizar = document.createElement('button')
+	btnAtualizar.innerHTML = 'Atualizar'
+	btnAtualizar.setAttribute('class', 'btn btn-success button')
+	btnAtualizar.style.marginLeft = '5px'
+
+	return btnAtualizar
+}
 
 /** FIM CRUD CONDOMINIO*/
 
