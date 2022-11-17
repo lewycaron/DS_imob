@@ -24,9 +24,71 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 	window.addEventListener('load', () => {
 		aos_init();
-	});
 
+		let classeRef = document.getElementsByClassName("optionsCondominio")[0]
+		createSelectCondominio(classeRef);
+	});
 });
+
+function createSelectCondominio(ref, id, id_condominio) {
+	let select = document.createElement('select')
+	select.setAttribute('class', 'form-select selectCondo')
+	select.setAttribute('id', id)
+
+	
+
+	let options = document.createElement('option')
+	options.innerHTML = "Selecione..."
+	select.appendChild(options)
+
+	getAllCondominio().then((res) => {
+		for (let condominios of res) {
+			options = document.createElement('option')
+			options.value = condominios.id
+			// condominios.id = options.value
+			options.innerHTML = condominios.nome_condominio
+			select.appendChild(options)
+		}
+	})
+
+	/**
+	 * 
+	 *  Select
+	 * 		options
+	 * 			value
+	 * 			texto (visivel)
+	 */	
+
+	// console.log(select.options[select.selectedIndex].value)
+
+	select.options[selectedOptions].selected = true
+	
+
+	// console.log(select.options[1])
+	// select.options[select.selectedOptions] = 1
+
+	// select.options[select.selectedIndex].value
+	
+	
+
+	// select.selectedOptions = id_condominio
+
+	// console.log(select.selectedOptions)
+
+	// console.log(id_condominio)
+	
+	// select.options[id_condominio].selected = true
+
+
+
+	console.log(select.selectedOptions)
+
+	ref.appendChild(select)
+}
+
+function getAllCondominio() {
+	return fetch(url + `condominio/getAll`).then((res) => res.json())
+}
 
 /** INICIO CRUD MORADOR*/
 
@@ -85,17 +147,19 @@ function listarMorardor() {
 		.then(response => response.json())
 		.then((moradores) => {
 			let listaMorador = document.getElementById('lista-morador')
-			
-			while(listaMorador.firstChild)
-			{
+
+			while (listaMorador.firstChild) {
 				listaMorador.removeChild(listaMorador.firstChild)
 			}
 
 			//preenche div com moradores recebidos do GET
 			for (let morador of moradores) {
+				
 				//cria div para as informacoes de um morador
 				let divmorador = document.createElement('div')
 				divmorador.setAttribute('class', 'php-email-form')
+
+
 
 				//pega o nome do morador
 				let divNome = document.createElement('input')
@@ -103,6 +167,8 @@ function listarMorardor() {
 				divNome.value = morador.nome
 				divNome.setAttribute('class', 'form-control nomeMorador')
 				divmorador.appendChild(divNome)
+
+				
 
 				//pega o email do morador
 				let divEmail = document.createElement('input')
@@ -119,6 +185,10 @@ function listarMorardor() {
 				divCEP.setAttribute('class', 'form-control inputForm')
 				divmorador.appendChild(divCEP)
 
+				let id = `${morador.cep}${morador.id}`;
+				createSelectCondominio(divmorador, id, morador.id_condominio)
+
+				
 				//cria o botao para atualizar o morador
 				let btnAtualizar = document.createElement('button')
 				btnAtualizar.innerHTML = 'Atualizar'
@@ -131,24 +201,22 @@ function listarMorardor() {
 				btnRemover.setAttribute('class', 'btn btn-danger button')
 				btnRemover.style.marginRight = '5px'
 
-				btnRemover.addEventListener('click', function() {
-					fetch(url + `moradores/deletar/${morador.id}`, 
-					{
-						'method': 'DELETE'
-					})
-					.then((res) => {
-						alert('Morador removido com sucesso!')
-						listarMorardor()
-					})
+				btnRemover.addEventListener('click', function () {
+					fetch(url + `moradores/deletar/${morador.id}`,
+						{
+							'method': 'DELETE'
+						})
+						.then((res) => {
+							alert('Morador removido com sucesso!')
+							listarMorardor()
+						})
 				})
 
-				console.log(morador.id_condominio)
+				btnAtualizar.addEventListener('click', function () {
+					let option = document.getElementById(id)
 
-				
-
-				btnAtualizar.addEventListener('click', function() {
 					let json = {
-						'id_condominio': morador.id_condominio,
+						'id_condominio': option.value,
 						'nome': divNome.value,
 						'email': divEmail.value,
 						'cep': divCEP.value
@@ -157,20 +225,21 @@ function listarMorardor() {
 					console.log(json)
 
 					fetch(url + `moradores/atualizar/${morador.id}`,
-					{
-						'method': 'PUT',
-						'headers':
 						{
-							'Content-Type': 'application/json'
-						},
-						'body': JSON.stringify(json)
-					})
-					.then()
-					.then((res) => {
-						console.log(res)
-					})
+							'method': 'PUT',
+							'headers':
+							{
+								'Content-Type': 'application/json'
+							},
+							'body': JSON.stringify(json)
+						})
+						.then()
+						.then((res) => {
+							console.log(res)
+						})
 				})
 
+				
 				//cria a div com os dois botoes
 				let divBotoes = document.createElement('div')
 				divBotoes.style.display = 'flex'
@@ -180,6 +249,8 @@ function listarMorardor() {
 
 				//insere a div do morador na div com a lista de moradores
 				listaMorador.appendChild(divmorador)
+
+				
 			}
 		})
 }
@@ -189,6 +260,7 @@ function listarMorardor() {
 /** FIM CRUD MORADOR*/
 
 //lista-condominio
+
 
 function listarCondominio() {
 	//da um GET no endpoint "condominio"
